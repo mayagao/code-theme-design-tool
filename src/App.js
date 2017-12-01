@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import CodeMirror from 'react-codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript.js'
-import 'codemirror/addon/runmode/runmode.js'
+
 import SyntaxColorInputContainer from './components/syntaxColorInputContainer.js'
 import ColorInput from './components/colorInput.js'
 import { darkThemeSyntaxTemplate, darkThemeDerivatives } from './constants/darkThemeTemplate.js'
 import { lightThemeSyntaxTemplate, lightThemeDerivatives } from './constants/lightThemeTemplate.js'
-import { d3ExampleSnippet } from './constants/codeSnippets.js'
+import CodeContainer from './components/codeContainer'
 import ContrastScale from './components/contrastScale'
+
 
 class App extends Component {
   constructor(props) {
@@ -21,18 +19,10 @@ class App extends Component {
   updateBgColor = (value) => {
     this.setState({ bgColor: value })
   }
-  switchThemeLight = () => {
-    this.setState({ theme: 'light', bgColor: '#FBFAF9' })
-  }
-  switchThemeDark = () => {
-    this.setState({ theme: 'dark', bgColor: '#3D2C40' })
+  switchTheme = (theme) => {
+    this.setState({ theme: theme, bgColor: theme === 'light' ? '#FBFAF9' :  '#3D2C40'})
   }
   render() {
-    const options = {
-      lineNumbers: true,
-      readOnly: false,
-      mode: 'javascript'
-    };
     const colorInputColumnClasses = 'w-20-l w4-m w-40 dib mr4 mb3';
  
     return (
@@ -41,15 +31,14 @@ class App extends Component {
       .CodeMirror { padding: 0px; border-radius: 6px; background: ${this.state.bgColor} !important; }
       ${this.state.theme === 'light' ? lightThemeDerivatives : darkThemeDerivatives}
     `}</style>
-        <div className='f3 mb4'>CodeMirror Theme Contrast Ratio</div>
-        <div className='mb3'>
-          <a className={`${this.state.theme === 'light' ? '': 'o-50'} pointer mr3`} onClick={this.switchThemeLight}>Light</a>
-          <a className={`${this.state.theme === 'dark' ? '': 'o-50'} pointer `} onClick={this.switchThemeDark}>Dark</a>
-        </div>
-        <CodeMirror 
-          ref='editor' 
-          value={d3ExampleSnippet}
-          options={options} />
+        <div className='f3 mb1'>Theme Maker</div>
+         <div className='f5 mb4 o-60'>Design CodeMirror theme and test contrast ratio.</div>
+        <CodeContainer
+          theme = {this.state.theme}
+          switchTheme = {this.switchTheme}
+          snippetIndex={this.state.snippetIndex}
+          switchSnippet ={this.switchSnippet}
+        />
         <div className='cf mt3 pv4'>
           <div className='w-30-l w-100 fl mb4'>
             <div className='f6 pr4-ns gray pr0 lh-title'>

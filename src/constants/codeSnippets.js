@@ -1,45 +1,36 @@
-export const reactExampleSnippet = `//https://github.com/zeit/styled-jsx/blob/master/src/style.js
+export const codeSnippets = [ `//https://reactjs.org/tutorial/tutorial.html
 
-import { Component } from 'react'
-import StyleSheetRegistry from './stylesheet-registry'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 
-const styleSheetRegistry = new StyleSheetRegistry()
-
-export default class JSXStyle extends Component {
-  static dynamic(info) {
-    return info
-      .map(tagInfo => {
-        const [baseId, props] = tagInfo
-        return styleSheetRegistry.computeId(baseId, props)
-      })
-      .join(' ')
-  }
-
-  componentWillMount() {
-    styleSheetRegistry.add(this.props)
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.css !== nextProps.css
-  }
-
-  // To avoid FOUC, we process new changes
-  // on componentWillUpdate rather than componentDidUpdate.
-  componentWillUpdate(nextProps) {
-    styleSheetRegistry.update(this.props, nextProps)
-  }
-
-  componentWillUnmount() {
-    styleSheetRegistry.remove(this.props)
+class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      xIsNext: true,
+    };
   }
 
   render() {
-    return null
+    return (
+      <div className="game">
+        <div className="game-board">
+          <Board />
+        </div>
+        <div className="game-info">
+          <div>{/* status */}</div>
+          <ol>{/* TODO */}</ol>
+        </div>
+      </div>
+    );
   }
 }
-`
-
-export const d3ExampleSnippet = `// General Update Pattern, III, https://bl.ocks.org/mbostock/3808234
+`,
+`// General Update Pattern, III, https://bl.ocks.org/mbostock/3808234
 
 var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
@@ -85,4 +76,35 @@ d3.interval(function() {
   update(d3.shuffle(alphabet)
       .slice(0, Math.floor(Math.random() * 26))
       .sort());
-}, 1500);`
+}, 1500);`,
+`'use strict';
+
+let spectest = {
+  print: print || ((...xs) => console.log(...xs)),
+  global: 666,
+  table: new WebAssembly.Table({initial: 10, maximum: 20, element: 'anyfunc'}),  memory: new WebAssembly.Memory({initial: 1, maximum: 2}),};
+
+let registry = {spectest};
+
+function register(name, instance) {
+  registry[name] = instance.exports;
+}
+
+function module(bytes, valid = true) {
+  let buffer = new ArrayBuffer(bytes.length);
+  let view = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.length; ++i) {
+    view[i] = bytes.charCodeAt(i);
+  }
+  let validated;
+  try {
+    validated = WebAssembly.validate(buffer);
+  } catch (e) {
+    throw new Error("Wasm validate throws");
+  }
+  if (validated !== valid) {
+    throw new Error("Wasm validate failure" + (valid ? "" : " expected"));
+  }
+  return new WebAssembly.Module(buffer);
+}
+`]
