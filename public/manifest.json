@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Theme Maker",
+  "name": "Design CodeMirror theme and test contrast ratio",
   "icons": [
     {
       "src": "favicon.ico",

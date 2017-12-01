@@ -7,7 +7,8 @@ class ContrastScale extends React.Component {
       aaThreshold = 4.5,
       aaaThreshold = 7,
       width = 200,
-      radius = 8;
+      radius = 8,
+      lineheight = 5;
     const zeroColor = '#F35F20',
       lowColor = '#F5923E',
       aaColor = '#35C380',
@@ -35,9 +36,9 @@ class ContrastScale extends React.Component {
             <stop offset="100%" style={{ stopColor: `${aaaColor}`, stopOpacity:1}} />
           </linearGradient>
         </defs>
-          <rect style={{fill:'url(#to-low)'}} x={radius*2 - 2} y="24" width={lowXPostion + 4} height="7"/>
-          <rect style={{fill:'url(#to-aa)'}} x={lowXPostion - 2} y="24" width={aaXPostion - lowXPostion + 4} height="7"/>
-          <rect style={{fill:'url(#to-aaa)'}} x={aaXPostion - 2} y="24" width={width - aaXPostion + 4 } height="7"/>
+          <rect style={{fill:'url(#to-low)'}} x={radius*2 - 2} y="26" width={lowXPostion + 4} height={lineheight}/>
+          <rect style={{fill:'url(#to-aa)'}} x={lowXPostion - 2} y="26" width={aaXPostion - lowXPostion + 4} height={lineheight}/>
+          <rect style={{fill:'url(#to-aaa)'}} x={aaXPostion - 2} y="26" width={width - aaXPostion + 4 } height={lineheight}/>
 
           <circle style={{fill:`${zeroColor}`}} cx={radius} cy={radius + 20} r={radius}/>
           <circle style={{fill:`${lowColor}`}} cx={lowXPostion} cy={radius + 20} r={radius}/>
