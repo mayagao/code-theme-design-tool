@@ -6,7 +6,6 @@ import 'codemirror/addon/runmode/runmode.js'
 import { codeSnippets } from '../constants/codeSnippets.js'
 import IconRefresh from '../static/icons/iconRefresh.js'
 
-
 class CodeContainer extends React.Component {
   constructor(props) {
       super(props);
@@ -31,9 +30,7 @@ class CodeContainer extends React.Component {
   }
 
   render() {
-   
     const {
-      snippetIndex,
       theme
     } = this.props;
     const options = {
@@ -42,7 +39,7 @@ class CodeContainer extends React.Component {
       mode: 'javascript'
     };
     return (
-      <div>
+      <div className='relative cf'>
        <div className='mb3'>
           <a className={`${theme === 'light' ? '': 'o-50'} pointer mr3`} onClick={this.switchThemeLight}>Light</a>
           <a className={`${theme === 'dark' ? '': 'o-50'} pointer `} onClick={this.switchThemeDark}>Dark</a>

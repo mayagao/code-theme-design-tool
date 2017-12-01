@@ -23,16 +23,17 @@ class App extends Component {
     this.setState({ theme: theme, bgColor: theme === 'light' ? '#FBFAF9' :  '#3D2C40'})
   }
   render() {
-    const colorInputColumnClasses = 'w-20-l w4-m w-40 dib mr4 mb3';
+    const colorInputColumnClasses = 'w-20-l w4 dib mr4-ns mr3 mb3';
  
     return (
-      <div className='ph4 pv4 mw8 center w-100'>
+      <div className='ph4 pv5 mw8 center w-100'>
       <style jsx>{`
       .CodeMirror { padding: 0px; border-radius: 6px; background: ${this.state.bgColor} !important; }
       ${this.state.theme === 'light' ? lightThemeDerivatives : darkThemeDerivatives}
     `}</style>
-        <div className='f3 mb1'>Theme Maker</div>
-         <div className='f5 mb4 o-60'>Design CodeMirror theme and test contrast ratio.</div>
+        <div className='cf mb4 '>
+         <div className='f3 fl'>CodeMirror Theme Maker</div>
+        </div>
         <CodeContainer
           theme = {this.state.theme}
           switchTheme = {this.switchTheme}
