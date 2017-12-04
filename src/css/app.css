@@ -16,7 +16,8 @@
   src: url('static/fonts/UbuntuMono-Bold.ttf') format('truetype'); /* Super Modern Browsers */
 }
 
-body {
+html,
+input {
   font-family: "Domus Regular", -apple-system, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 16px;
   letter-spacing: 0.021em;

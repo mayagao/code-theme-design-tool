@@ -1,0 +1,1 @@
+export const RENAME_THEME = 'RENAME_THEME'

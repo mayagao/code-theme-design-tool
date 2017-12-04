@@ -1,0 +1,81 @@
+{ 
+  "themeName": "untitled",
+  "darkThemeSyntax": [
+    {
+      "lable": "Default Text",
+      "value": "#F8F6F5",
+      "className": ["CodeMirror", "CodeMirror-linenumber", "cm-property", "cm-operator", "cm-comment"]
+    },
+    {
+      "lable": "Keyword",
+      "value": "#EBAD3B",
+      "className": ["cm-keyword"]
+    },
+    {
+      "lable": "Variable Defination",
+      "value": "#EBAD3B",
+      "className": ["cm-atom", "cm-def"]
+    },
+    {
+      "lable": "Variable",
+      "value": "#B6AFF7",
+      "className": ["cm-variable", "cm-variable-2"]
+    },
+    {
+      "lable": "Number",
+      "value": "#35C380",
+      "className": ["cm-number"]
+    },
+    {
+      "lable": "String",
+      "value": "#F08165",
+      "className": ["cm-string", "cm-string-2"]
+    }
+  ],
+  "darkThemeDerivatives": [
+    {
+      "className": "CodeMirror-gutters",
+      "properties": [
+        {
+         "property": "background",
+         "value": "#000000"
+        },
+        {
+         "property": "opacity",
+         "value": "0.2"
+        },
+        {
+         "property": "border",
+         "value": "4px solid transparent"
+        }
+      ]
+    },
+    {
+      "className": "CodeMirror-linenumber",
+      "properties": [
+        {
+         "property": "opacity",
+         "value": "0.5"
+        }
+      ]
+    },
+    {
+      "className": "cm-comment",
+      "properties": [
+        {
+         "property": "opacity",
+         "value": "0.5"
+        }
+      ]
+    },
+    {
+      "className": "cm-operator",
+      "properties": [
+        {
+         "property": "opacity",
+         "value": "0.8"
+        }
+      ]
+    }
+  ]
+}

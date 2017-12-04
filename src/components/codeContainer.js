@@ -36,7 +36,8 @@ class CodeContainer extends React.Component {
     const options = {
       lineNumbers: true,
       readOnly: false,
-      mode: 'javascript'
+      mode: 'javascript',
+      theme: 'untitled'
     };
     return (
       <div className='relative cf'>

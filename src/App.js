@@ -8,7 +8,8 @@ class App extends Component {
     super(props);
     this.state = { 
       bgColor: '#FBFAF9',
-      theme: 'light'
+      theme: 'light',
+      themeName: 'untitled'
     };
   }
   updateBgColor = (value) => {
@@ -17,12 +18,14 @@ class App extends Component {
   switchTheme = (theme) => {
     this.setState({ theme: theme, bgColor: theme === 'light' ? '#FBFAF9' :  '#3D2C40'})
   }
+  exportCss = () => {
 
+  }
   render() {
     return (
       <div className='ph4 pv5 mw8 center w-100'>
-        <div className='cf mb4 '>
-          <div className='f3 fl'>CodeMirror Theme Maker</div>
+        <div className='cf mb4 w5'>
+          <input type='text' className='f3 w-100 fl' placeholder='Give your theme a name' />
         </div>
         <CodeContainer
           theme = {this.state.theme}
@@ -50,7 +53,10 @@ class App extends Component {
             />
           </div>
         </div>
-
+        <div>
+          <a className = 'pointer link blue ' onClick={this.exportCss}> Export CSS </a>
+          <div></div>
+        </div>
       </div>
     );
   }
