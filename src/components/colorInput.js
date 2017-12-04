@@ -14,7 +14,6 @@ class ColorInput extends React.Component {
     } = this.props;
     let tooBright = isTooBright(value);
     return (
-
       <div className='mb1'>
       <style jsx>{`
       input {

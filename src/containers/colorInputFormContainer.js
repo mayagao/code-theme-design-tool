@@ -1,10 +1,12 @@
 import React from 'react'
 import SyntaxColorInputContainer from './syntaxColorInputContainer.js'
-import ColorInput from './colorInput.js'
+import ColorInput from '../components/colorInput.js'
+import ColorInputForm from '../components/colorInputForm.js'
 import _darkThemeTemplate from '../api/darkThemeTemplate.json'
 import _lightThemeTemplate from '../api/lightThemeTemplate.json'
+import { generateDerivativeRules } from '../utils/generateDerivativeRules.js'
 
-class FormContainer extends React.Component {
+class ColorInputFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,26 +17,19 @@ class FormContainer extends React.Component {
     this.setState({ value });
     this.props.updateBgColor(value);
   }
-  generateDerivativeRules(rules) {
-    return rules.reduce(
-      (s, c) => 
-        s + '.' + c.className + ' { ' +
-        c.properties.reduce((rules, p) => rules + p.property + ": " + p.value + " !important; ", '')
-        + '}\n'
-      , '')
-  }
+
   render() {
-    const colorInputColumnClasses = 'w-20-l w4 dib mr4-ns mr3 mb3';
     const {
       theme,
       bgColor
     } = this.props;
+    const colorInputColumnClasses = 'w-20-l w4 dib mr4-ns mr3 mb3';
     return (
-       <form className='flex flex-wrap'>
+       <ColorInputForm>
          <style jsx>{`
           .CodeMirror { padding: 0px; border-radius: 6px; background: ${bgColor} !important; }
-          ${theme === 'light' ? this.generateDerivativeRules(_lightThemeTemplate.lightThemeDerivatives)
-           : this.generateDerivativeRules(_darkThemeTemplate.darkThemeDerivatives)}
+          ${theme === 'light' ? generateDerivativeRules(_lightThemeTemplate.themeDerivatives)
+           : generateDerivativeRules(_darkThemeTemplate.themeDerivatives)}
         `}</style>
           <div className={`${colorInputColumnClasses}`}>
           <ColorInput
@@ -42,7 +37,7 @@ class FormContainer extends React.Component {
             label={'Background'}
             onChange={this.updateBgColor} />
           </div>         
-          {theme === 'light' && _lightThemeTemplate.lightThemeSyntax.map((s, i) => 
+          {theme === 'light' && _lightThemeTemplate.themeSyntax.map((s, i) => 
             <div key={i}  className={`${colorInputColumnClasses}`}>
               <SyntaxColorInputContainer 
                 label={s.lable} 
@@ -51,7 +46,7 @@ class FormContainer extends React.Component {
                 className={s.className} 
               />
             </div>)}
-          {theme === 'dark' && _darkThemeTemplate.darkThemeSyntax.map((s, i) => 
+          {theme === 'dark' && _darkThemeTemplate.themeSyntax.map((s, i) => 
             <div key={i}  className={`${colorInputColumnClasses}`}>
               <SyntaxColorInputContainer 
                 label={s.lable} 
@@ -60,9 +55,9 @@ class FormContainer extends React.Component {
                 className={s.className} 
               />
             </div>)}
-        </form>
+        </ColorInputForm>
     )
   }
 }
 
-export default FormContainer;
+export default ColorInputFormContainer;

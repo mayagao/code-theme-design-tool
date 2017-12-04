@@ -2,8 +2,8 @@
 // contrast widget, it modifies CSS rules of the code container
 
 import React from 'react';
-import ColorInput from './colorInput.js'
-import ContrastWidget from './contrastWidget.js'
+import ColorInput from '../components/colorInput.js'
+import ContrastWidget from '../components/contrastWidget.js'
 
 class SyntaxColorInputContainer extends React.Component {
   constructor(props) {

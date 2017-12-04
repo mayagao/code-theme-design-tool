@@ -1,6 +1,7 @@
 { 
-  "themeName": "untitled",
-  "lightThemeSyntax": [
+  "name": "light",
+  "bgColor": "#fff",
+  "themeSyntax": [
     {
       "lable": "Default Text",
       "value": "#3D2C40",
@@ -32,7 +33,7 @@
       "className": ["cm-string", "cm-string-2"]
     }
   ],
-  "lightThemeDerivatives": [
+  "themeDerivatives": [
     {
       "className": "CodeMirror-gutters",
       "properties": [
