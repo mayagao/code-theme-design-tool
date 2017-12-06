@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 import { switchBaseThemeLight, switchBaseThemeDark } from '../actions'
 
 const mapStateToProps = state => {
-  return { theme: state.baseThemeName }
+  return { 
+    theme: state.baseThemeName, 
+    themeName: state.themeName 
+  }
 }
 
 const mapDispatchToProps = dispatch => {

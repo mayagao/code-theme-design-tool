@@ -30,7 +30,7 @@ class CodePreview extends React.Component {
       lineNumbers: true,
       readOnly: false,
       mode: 'javascript',
-      theme: 'untitled'
+      theme: 'themeName'
     };
     return (
       <div className='relative cf'>

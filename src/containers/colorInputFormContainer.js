@@ -4,6 +4,7 @@ import { updateBgColor, updateSyntaxColor } from '../actions'
 
 const mapStateToProps = state => {
   return { 
+    themeName: state.themeName,
     bgColor: state.bgColor,
     themeTemplate: state.baseTheme
   }
