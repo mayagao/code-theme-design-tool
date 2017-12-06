@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
-import CodeContainer from './containers/codeContainer'
+import CodePreviewContainer from './containers/codePreviewContainer'
 import ColorInputFormContainer from './containers/colorInputFormContainer'
 import ThemeNameContainer from './containers/themeNameContainer'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      bgColor: '#FBFAF9',
-      theme: 'light'
-    };
-  }
-  updateBgColor = (value) => {
-    this.setState({ bgColor: value });
-  }
-  switchTheme = (theme) => {
-    this.setState({ theme: theme, bgColor: theme === 'light' ? '#FBFAF9' :  '#3D2C40'})
-  }
   exportCss = () => {
 
   }
@@ -27,17 +14,8 @@ class App extends Component {
         <div className='cf mb4 w5'>
           <ThemeNameContainer />
         </div>
-        <CodeContainer
-          theme = {this.state.theme}
-          switchTheme = {this.switchTheme}
-          snippetIndex={this.state.snippetIndex}
-          switchSnippet ={this.switchSnippet}
-        />
-        <ColorInputFormContainer 
-          theme = {this.state.theme}
-          bgColor = {this.state.bgColor}
-          updateBgColor = {this.updateBgColor}
-        />
+        <CodePreviewContainer />
+        <ColorInputFormContainer  />
         <div>
           <a className = 'pointer link blue ' onClick={this.exportCss}> Export CSS </a>
           <div></div>

@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 
 class themeNameInput extends Component { 
   updateThemeName = (e) => {
-    console.log(this.props.themeName)
     this.props.updateThemeName(e.target.value)
+  }
+  onBlur = (e) => {
+    if (e.target.value.trim() === '') {
+      this.props.updateThemeName('untitled')
+    } else {
+      this.props.updateThemeName(e.target.value.trim())
+    }
   }
   render() {
     return (

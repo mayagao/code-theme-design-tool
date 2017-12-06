@@ -3,32 +3,32 @@
   "bgColor": "#fff",
   "themeSyntax": [
     {
-      "lable": "Default Text",
+      "label": "Default Text",
       "value": "#3D2C40",
       "className": ["CodeMirror", "CodeMirror-linenumber", "cm-property", "cm-operator", "cm-comment"]
     },
     {
-      "lable": "Keyword",
+      "label": "Keyword",
       "value": "#8D84E5",
       "className": ["cm-keyword"]
     },
     {
-      "lable": "Variable Defination",
+      "label": "Variable Defination",
       "value": "#3D2C40",
       "className": ["cm-atom", "cm-def"]
     },
     {
-      "lable": "Variable",
+      "label": "Variable",
       "value": "#4B93E3",
       "className": ["cm-variable", "cm-variable-2"]
     },
     {
-      "lable": "Number",
+      "label": "Number",
       "value": "#34B277",
       "className": ["cm-number"]
     },
     {
-      "lable": "String",
+      "label": "String",
       "value": "#DD6547",
       "className": ["cm-string", "cm-string-2"]
     }

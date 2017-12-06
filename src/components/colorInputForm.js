@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ContrastScale from '../static/contrastScale'
+import ColorInput from './colorInput.js'
+import ContrastWidget from './contrastWidget.js'
+import { generateDerivativeRules } from '../utils/generateDerivativeRules.js'
 
-
-
-const ColorInputForm = ({ children}) => (
-
+const colorInputColumnClasses = 'w-20-l w4 dib mr4-ns mr3 mb3'
+const ColorInputForm = ({ bgColor, updateBgColor, updateSyntaxColor, themeTemplate }) => (
   <div className='cf pt4'>
     <div className='w-30-l w-100 fl mb4'>
       <div className='f6 pr4-ns gray pr0 lh-title'>
@@ -20,7 +21,33 @@ const ColorInputForm = ({ children}) => (
     </div>
     <div className='w-70-l w-100 fl mb4'>
       <form className='flex flex-wrap'>
-       {children}     
+       <style jsx>{`
+          .CodeMirror { padding: 0px; border-radius: 6px; background: ${bgColor} !important; }
+          ${generateDerivativeRules(themeTemplate.themeDerivatives)}
+        `}</style>
+          <div className={`${colorInputColumnClasses}`}>
+          <ColorInput
+            value={bgColor} 
+            label={'Background'}
+            onChange={updateBgColor} />
+          </div>         
+          {themeTemplate.themeSyntax.map((s, i) => 
+            <div key={i}  className={`${colorInputColumnClasses}`}>
+              <style jsx>{`
+                .${s.className.length > 1 ? s.className.join(', .') : s.className[0]} {
+                  color: ${s.value} !important;
+                }
+              `}</style>
+              <ColorInput
+                value={s.value} 
+                label={s.label}
+                onChange={updateSyntaxColor} />
+               <ContrastWidget
+                foreground={s.value}
+                background={bgColor}
+                />
+            </div>)}
+
       </form>
     </div>
   </div>
@@ -29,7 +56,10 @@ const ColorInputForm = ({ children}) => (
 
 
 ColorInputForm.propTypes = {
-  children: PropTypes.node
+  updateSyntaxColor: PropTypes.func,
+  updateBgColor: PropTypes.func,
+  bgColor: PropTypes.string,
+  themeTemplate: PropTypes.object.isRequired
 
 }
 

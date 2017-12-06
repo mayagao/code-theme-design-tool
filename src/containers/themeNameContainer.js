@@ -3,11 +3,11 @@ import ThemeNameInput from '../components/themeNameInput.js'
 import { connect } from 'react-redux'
 import { renameTheme } from '../actions'
 
-const mapStateToProps = state => {
-  return { themeName: state.get('themeName') }
+const mapStateToProps = (state, ownProps) => {
+  return { themeName: state.themeName }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     updateThemeName: themeName => {
       dispatch(renameTheme(themeName))

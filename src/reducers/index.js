@@ -6,46 +6,64 @@ import {
   UPDATE_SYNTAX_COLOR
 } from '../constants/ActionTypes'
 
-import Immutable from 'immutable'
 import _darkThemeTemplate from '../api/darkThemeTemplate.json'
 import _lightThemeTemplate from '../api/lightThemeTemplate.json'
 
-const initialState = Immutable.Map({
-  themeName: 'untitled',
+const initialState = {
+  themeName: '',
   baseThemeName: 'light',
-  baseTheme: Immutable.fromJS(_lightThemeTemplate),
-  bgColor: '#fff'
-})
+  baseTheme: _lightThemeTemplate,
+  bgColor: '#FBFAF9'
+}
 
 const themeApp = (state = initialState, action) => {
   switch (action.type) {
     case RENAME_THEME:
-      state.set('themeName', action.themeName)
-      break
+      return {
+        ...state,
+        themeName: action.themeName
+      }
     case SWITCH_BASE_THEME_LIGHT:
-      if (state.get('baseThemeName') !== 'light') {
-        state.set('baseThemeName', 'light')
-        state.set('baseTheme', Immutable.fromJS(_lightThemeTemplate))
+      return {
+        ...state,
+        baseThemeName: 'light',
+        bgColor: '#FBFAF9',
+        baseTheme: _lightThemeTemplate
       }
-      break
+      
     case SWITCH_BASE_THEME_DARK:
-      if (state.get('baseThemeName') !== 'dark') {
-        state.set('baseThemeName', 'dark')
-        state.set('baseTheme', Immutable.fromJS(_darkThemeTemplate))
+      return {
+        ...state,
+        baseThemeName: 'dark',
+        bgColor: '#3D2C40',
+        baseTheme: _darkThemeTemplate
       }
-      break
     case UPDATE_BG_COLOR:
-      state.set('bgColor', action.bgColor)
-      break
+      return {
+        ...state,
+        bgColor: action.bgColor
+      }
+     
     case UPDATE_SYNTAX_COLOR:
-      state.setIn(['baseTheme', 'themeSyntax'])
-           .findEntry(entry => entry.get('lable') === action.lable)[1]
-           .set('value', action.value)
-      break
+      let themeSyntax = state.baseTheme.themeSyntax
+      let index = themeSyntax.indexOf(themeSyntax.find(i => i.label === action.label))
+      let newItem = themeSyntax[index]
+      newItem.value = action.value
+
+      return {
+        ...state,
+        baseTheme: {
+          ...state.baseTheme,
+          themeSyntax: [
+             ...state.baseTheme.themeSyntax.slice(0, index),
+             newItem,
+             ...state.baseTheme.themeSyntax.slice(index + 1)
+          ]
+        }
+      }
     default:
-      break
+      return state
   }
-  return state
 }
 
 export default themeApp

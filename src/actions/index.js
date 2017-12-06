@@ -26,10 +26,10 @@ export function updateBgColor(bgColor) {
   }
 }
 
-export function updateSyntaxColor(lable, value) {
+export function updateSyntaxColor(label, value) {
   return {
     type: types.UPDATE_SYNTAX_COLOR,
-    lable,
+    label,
     value
   }
 }
